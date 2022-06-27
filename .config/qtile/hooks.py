@@ -1,10 +1,9 @@
 from os import environ
-from psutil import Process
 from subprocess import PIPE, Popen, run
 from libqtile import qtile, hook
 from libqtile.log_utils import logger
 
-from classes import AutoStart, Helpers
+from classes import AutoStart
 
 
 @hook.subscribe.startup_once
@@ -46,3 +45,9 @@ def set_screens(event):
     if event:
         run(["autorandr", "--change"])
     qtile.restart()
+
+
+@hook.subscribe.client_new
+def dialogs(window):
+    if(window.window.get_wm_type() == 'dialog' or window.window.get_wm_transient_for()):
+        window.floating = True

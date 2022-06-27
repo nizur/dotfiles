@@ -23,6 +23,7 @@ cols_layout_config = {
 layouts = [
     layout.Bsp(
         **base_layout_config,
+        fair=False,
     ),
     layout.Max(
         **base_layout_config,

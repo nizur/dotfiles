@@ -69,9 +69,17 @@ for i in range(0, num_screens):
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.WindowName(
-                    for_current_screen=True,
-                    padding=dpi(10),
+                widget.Prompt(
+                    bell_style="visual",
+                    cursor_color=Palette.colors[theme]["red"],
+                    ignore_dups_history=True,
+                    prompt=" ",
+                    visual_bell_color=Palette.colors[theme]["red"],
+                ),
+                widget.Clipboard(
+                    blacklist=["1password", "1Password"],
+                    fmt=" {}",
+                    foreground=Palette.colors[theme]["flamingo"],
                 ),
                 widget.Spacer(),
                 widget.GroupBox(
@@ -87,18 +95,6 @@ for i in range(0, num_screens):
                     urgent_text=Palette.colors[theme]["red"],
                 ),
                 widget.Spacer(),
-                widget.Prompt(
-                    bell_style="visual",
-                    cursor_color=Palette.colors[theme]["red"],
-                    ignore_dups_history=True,
-                    prompt=" ",
-                    visual_bell_color=Palette.colors[theme]["red"],
-                ),
-                widget.Clipboard(
-                    blacklist=["1password", "1Password"],
-                    fmt=" {}",
-                    foreground=Palette.colors[theme]["flamingo"],
-                ),
                 widget.WindowCount(
                     padding=dpi(10),
                     text_format=" {num}",

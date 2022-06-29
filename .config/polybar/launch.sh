@@ -8,5 +8,4 @@ polybar-msg cmd quit
 
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/example.log
-polybar -r default 2>&1 | tee -a /tmp/example.log & disown
-
+polybar -r topbar 2>&1 | tee -a /tmp/poly-topbar.log & disown

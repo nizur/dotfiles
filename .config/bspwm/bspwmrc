@@ -40,10 +40,10 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 0
 # Looks                                             #
 #####################################################
 
-config border_width             1
+config border_width             2
 config border_radius            3
 config window_gap               5
-config top_padding              35
+config top_padding              38
 config bottom_padding           0
 config split_ratio              0.5
 
@@ -59,10 +59,10 @@ config gapless_monocle          false
 # Rules                                             #
 #####################################################
 
-rule Gimp-2.10  desktop='^8' state=floating follow=on
 rule firefox    desktop='^1'
 rule Code       desktop='^2'
 rule discord    desktop='^5'
+rule Gimp-2.10  desktop='^8' state=floating follow=on
 rule kitty      follow=on focus=on
 rule feh        state=floating
 

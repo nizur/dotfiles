@@ -1,3 +1,5 @@
+# PROJECT MOVED TO [CODEBERG](https://codeberg.org/cruzin/dotfiles)!
+
 # dotfiles
 My dotfiles on Linux
 

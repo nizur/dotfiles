@@ -51,7 +51,8 @@ config active_border_color      "#F38BA8"
 config focused_border_color     "#A6E3A1"
 config normal_border_color      "#1E1E2E"
 
-config focus_follows_pointer    true
+config click_to_focus           true 
+#config focus_follows_pointer    true
 config borderless_monocle       true
 config gapless_monocle          false
 

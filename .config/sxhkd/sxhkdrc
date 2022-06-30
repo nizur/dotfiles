@@ -7,6 +7,18 @@
 #	╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝		#
 ################### By: nizur ###################
 
+#
+# sxhkd
+#
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# launchers
+#
+
 # terminal emulator
 super + Return
 	kitty
@@ -15,9 +27,29 @@ super + Return
 super + d
 	rofi -show drun
 
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
+#
+# screenshots
+#
+
+# full screenshot
+super + s; Print
+	maim -u $HOME/Pictures/Screenshots/bspwm_full_$(date +%s).png && \
+		notify-send -a maim "Took a full screenshot"
+
+#  full screenshot -> clipboard
+super + s; shift + Print
+     maim -u | xclip -selection clipboard -t image/png && \
+	 	notify-send -a maim "Full screenshot saved to clipboard"
+
+# selection screenshot
+super + s; ctrl + Print
+	maim -s $HOME/Pictures/Screenshots/bspwm_select_$(date +%s).png && \
+		notify-send -a maim "Took a selection screenshot"
+
+# selection screenshot -> clipboard
+super + s; shift + ctrl + Print
+    maim --select | xclip -selection clipboard -t image/png && \
+		notify-send -a maim "Selection screenshot saved to clipboard"
 
 #
 # bspwm hotkeys

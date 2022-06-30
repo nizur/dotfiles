@@ -6,6 +6,7 @@ from libqtile.lazy import lazy
 
 from widgets.owm import OpenWeatherMap
 from widgets.volume import MyPulseVolume
+from widgets.window_indicators import WindowIndicators
 
 from classes import Helpers, Palette
 
@@ -20,8 +21,8 @@ opensuse_icon = "Button-monochrome" if theme == "mocha" else "Button-monochrome-
 
 widget_defaults = dict(
     background=Palette.colors[theme]["base"],
-    font="iM WritingQuattroS Nerd Font",
-    fontsize=dpi(13),
+    font="Hack Nerd Font",
+    fontsize=dpi(12),
     foreground=Palette.colors[theme]["text"],
     padding=dpi(10),
 )
@@ -33,23 +34,23 @@ screens = []
 for i in range(0, num_screens):
     screens.extend([
         Screen(
-            top=bar.Bar([
+            bottom=bar.Bar([
                 widget.Spacer(
-                    background=Palette.colors["opensuse"],
+                    background=Palette.colors[theme]["green"],
                     length=2,
                 ),
                 widget.Image(
-                    background=Palette.colors["opensuse"],
+                    background=Palette.colors[theme]["green"],
                     filename=expanduser(
                         f"~/.local/share/opensuse/{opensuse_icon}.png"),
                     margin=dpi(4),
                 ),
                 widget.CheckUpdates(
-                    background=Palette.colors["opensuse"],
+                    background=Palette.colors[theme]["green"],
                     colour_have_updates=Palette.colors[theme]["base"],
                     custom_command="zypper lu",
                     custom_command_modify=lambda x: x - 4,
-                    display_format="{updates} ",
+                    display_format="{updates} ",
                     mouse_callbacks={
                         "Button1": lazy.spawn("kitty -e sudo zypper dup"),
                     },
@@ -59,7 +60,7 @@ for i in range(0, num_screens):
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=layout_icon_paths,
                     padding=dpi(4),
-                    scale=0.5,
+                    scale=0.55,
                 ),
                 widget.Chord(
                     chords_colors={
@@ -87,7 +88,7 @@ for i in range(0, num_screens):
                     block_highlight_text_color=Palette.colors[theme]["text"],
                     borderwidth=0,
                     disable_drag=True,
-                    fontsize=dpi(20),
+                    fontsize=dpi(18),
                     hide_unused=True,
                     inactive=Palette.colors[theme]["base"],
                     padding=dpi(2),
@@ -95,12 +96,12 @@ for i in range(0, num_screens):
                     urgent_text=Palette.colors[theme]["red"],
                 ),
                 widget.Spacer(),
-                widget.WindowCount(
-                    padding=dpi(10),
-                    text_format=" {num}",
+                WindowIndicators(
+                    fontsize=dpi(9),
+                    indicator="",
                 ),
                 MyPulseVolume(
-                    foreground=Palette.colors[theme]["sapphire"],
+                    foreground=Palette.colors[theme]["mauve"],
                     get_volume_command="pamixer --get-volume-human",
                     limit_max_volume=True,
                     mute_command="pamixer -m",
@@ -111,11 +112,20 @@ for i in range(0, num_screens):
                 ),
                 OpenWeatherMap(
                     api_key="b8c0a2258d0134fb50533560dfb89a73",
-                    foreground=Palette.colors[theme]["green"],
+                    foreground=Palette.colors[theme]["sapphire"],
                     format="{icon} {temp:.0f}{temp_units}",
                     latitude=30.2,
                     longitude=-97.7,
                     units="imperial",
+                ),
+                widget.Memory(
+                    foreground=Palette.colors[theme]["teal"],
+                    format=" {MemUsed:.2f}{mm}",
+                    measure_mem="G",
+                ),
+                widget.CPU(
+                    foreground=Palette.colors[theme]["green"],
+                    format=" {load_percent:.0f}%",
                 ),
                 widget.Clock(
                     foreground=Palette.colors[theme]["yellow"],
@@ -148,31 +158,27 @@ for i in range(0, num_screens):
                             length=6,
                         ),
                     ],
-                    fontsize=dpi(18),
-                    text_closed="",
-                    text_open="",
-                ),
-                widget.Spacer(
-                    length=6,
+                    fontsize=dpi(16),
+                    text_closed=" ",
+                    text_open=" ",
                 ),
                 widget.Wallpaper(
-                    directory=expanduser("~/Pictures/Wallpapers"),
-                    fontsize=dpi(16),
+                    directory=expanduser("~/Pictures/Wallpapers/"),
+                    fontsize=dpi(18),
                     foreground=Palette.colors[theme]["text"],
-                    label="",
+                    label=" ",
                     random_selection=True,
                 ),
                 widget.Spacer(
+                    background=Palette.colors[theme]["green"],
                     length=4,
                 ),
             ],
                 background=Palette.colors[theme]["base"],
-                border_color=Palette.colors["opensuse"],
-                border_width=[dpi(1), 0, 0, 0],
-                foreground=Palette.colors[theme]["text"],
-                margin=dpi(5),
+                border_color=Palette.colors[theme]["green"],
+                margin=[0, dpi(300), 0, dpi(300)],
                 opacity=0.888888880,
-                size=dpi(28),
+                size=dpi(24),
             ),
         )
     ])

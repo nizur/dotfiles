@@ -11,7 +11,7 @@ base_layout_config = {
     "border_normal": Palette.colors[theme]["crust"],
     "border_on_single": False,
     "border_width": dpi(1),
-    "margin": [0, dpi(5), dpi(5), dpi(5)],
+    "margin": dpi(5),
     "single_border_width": 0,
 }
 

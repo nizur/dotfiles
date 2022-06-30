@@ -51,3 +51,15 @@ def set_screens(event):
 def dialogs(window):
     if(window.window.get_wm_type() == 'dialog' or window.window.get_wm_transient_for()):
         window.floating = True
+
+
+@hook.subscribe.client_new
+def client_new(client):
+    if client.name == 'Firefox':
+        client.togroup('1')
+    elif client.name == 'Code':
+        client.togroup('2')
+    elif client.name == 'Discord':
+        client.togroup('5')
+    elif client.wm_class == 'Gimp-2.10':
+        client.togroup('8')

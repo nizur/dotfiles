@@ -10,8 +10,6 @@ from widgets.window_indicators import WindowIndicators
 
 from classes import Helpers, Palette
 
-# TODO: Add CPU/Memory/HD to info section?
-
 dpi = Helpers.dpi
 theme = "mocha"
 
